@@ -7,6 +7,7 @@ from sqlalchemy.orm import relationship
 # Define the base class for declarative models
 Base = declarative_base()
 
+# Define the Customer model
 class Customer(Base):
     __tablename__ = "customers"
 
@@ -40,6 +41,8 @@ class Customer(Base):
             session.delete(review)
         session.commit()
 
+
+     # Define the Restaurant model
 class Restaurant(Base):
     __tablename__ = "restaurants"
 
@@ -61,6 +64,8 @@ class Restaurant(Base):
     def all_reviews(self):
         return [review.full_review() for review in self.reviews]
 
+    
+    
 class Review(Base):
     __tablename__ = "reviews"
 
