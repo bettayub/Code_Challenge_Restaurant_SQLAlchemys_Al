@@ -15,3 +15,18 @@ class Restaurant(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(255), nullable=False)
     price = Column(Integer)
+
+
+    reviews = relationship('Review', back_populates='restaurant')
+    customers = relationship('Customer', secondary='reviews')
+
+# Define the Customer model
+class Customer(Base):
+    # Specify the name of the table
+    __tablename__ = 'customers'
+
+    # Define columns for the table
+    id = Column(Integer, primary_key=True)
+    first_name = Column(String(255))
+    last_name = Column(String(255))
+
