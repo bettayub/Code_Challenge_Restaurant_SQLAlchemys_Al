@@ -64,8 +64,8 @@ class Restaurant(Base):
     def all_reviews(self):
         return [review.full_review() for review in self.reviews]
 
-    
-    
+     
+    # Define the Review model
 class Review(Base):
     __tablename__ = "reviews"
 
