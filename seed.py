@@ -31,3 +31,20 @@ session.add_all(customers + restaurants)
 
 # Commit the changes to the database
 session.commit()
+
+
+# Define data for creating reviews and ratings
+reviews_data = [
+    (customers[0], restaurants[0], 4.5),
+    (customers[1], restaurants[1], 3.8),
+    (customers[2], restaurants[2], 4.0),
+]
+
+# Create Review instances using list comprehensions
+reviews = [Review(customer=customer, restaurant=restaurant, rating_value=rating) for customer, restaurant, rating in reviews_data]
+
+# Add all Review instances to the session
+session.add_all(reviews)
+
+# Commit the changes to the database
+session.commit()
