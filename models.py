@@ -30,3 +30,24 @@ class Customer(Base):
     first_name = Column(String(255))
     last_name = Column(String(255))
 
+
+    reviews = relationship('Review', back_populates='customer')
+
+    restaurants = relationship('Restaurant', secondary='reviews')
+
+# Define the Review model
+class Review(Base):
+    # Specify the name of the table
+    __tablename__ = 'reviews'
+
+    # Define columns for the table
+    id = Column(Integer, primary_key=True)
+    star_rating = Column(Integer)
+    restaurant_id = Column(Integer, ForeignKey('restaurants.id'), nullable=False)
+    customer_id = Column(Integer, ForeignKey('customers.id'), nullable=False)
+
+    # Define the relationships with Restaurant and Customer models
+    restaurant = relationship('Restaurant', back_populates='reviews')
+    customer = relationship('Customer', back_populates='reviews')
+
+
