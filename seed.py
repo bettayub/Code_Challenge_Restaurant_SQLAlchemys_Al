@@ -16,3 +16,18 @@ Base.metadata.create_all(engine)
 # Create an SQLAlchemy session for interacting with the database
 Session = sessionmaker(bind=engine)
 session = Session()
+
+
+# Define data for creating customers and restaurants
+customers_data = [("Mike", "Johnson"), ("Denno", "Smith"), ("Timothy", "Brown")]
+restaurants_data = ["Quiver", "Villarosa", "Hilton"]
+
+# Create Customer and Restaurant instances using list comprehensions
+customers = [Customer(given_name=first_name, family_name=last_name) for first_name, last_name in customers_data]
+restaurants = [Restaurant(name=name) for name in restaurants_data]
+
+# Add all Customer and Restaurant instances to the session
+session.add_all(customers + restaurants)
+
+# Commit the changes to the database
+session.commit()
